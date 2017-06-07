@@ -29,6 +29,8 @@ function getPictureName(datatag)
                 return "cmc";
             case "dj-p0n3":
                 return "dj_pon3";
+            case "flim-and-flam":
+                return "flimflam";
             case "fluttershy-eqg":
                 return "fluttershy-eg";
             case "iron-will":
@@ -77,6 +79,7 @@ function getPictureName(datatag)
             case "main-7-eg":
             case "mane-iac":
             case "marble-pie":
+            case "maud-pie":
             case "micro-chips":
             case "midnight-sparkle":
             case "moonlight-raven":
