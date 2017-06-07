@@ -11,7 +11,6 @@
 
 function getCharacterTags()
 {
-    console.log("Getting Character Tags");
     return document.querySelectorAll("a.tag-character");
 }
 
@@ -135,8 +134,6 @@ function getPictureName(datatag)
 
 function swapForPictures(tags)
 {
-    console.log("swapForPictures");
-    console.log("Tags Found: " + tags.length);
     var i;
     for (i = 0; i < tags.length; i++) {
         var picname = getPictureName(tags[i].getAttribute('data-tag'));
@@ -144,5 +141,4 @@ function swapForPictures(tags)
     }
 }
 
-console.log("Running Script");
 swapForPictures(getCharacterTags());
