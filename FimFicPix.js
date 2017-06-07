@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         FimFic Pictures
+// @name         FimFicPix
 // @namespace    http://tampermonkey.net/
 // @version      1.0
 // @description  Replace Character Tags with Pictures
