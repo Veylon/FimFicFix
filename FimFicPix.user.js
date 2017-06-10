@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FimFic Pictures
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  Replace Character Tags with Pictures
 // @author       Veylon
 // @grant        none
@@ -9,16 +9,12 @@
 // @run-at document-end
 // ==/UserScript==
 
-// http://tinyimg.io/i/9uO4z3c.png
-
-var folderpath = "file://C:/Users/John/Pictures/MLP/Creating New Story - Fimfiction_files/";
-
 function getCharacterTags()
 {
     return document.querySelectorAll("a.tag-character");
 }
 
-function getPictureName(datatag)
+function getPictureData(datatag)
 {
         switch(datatag) {
             case "adagio-dazzle": return "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";
@@ -234,7 +230,9 @@ function swapForPictures(tags)
 {
     var i;
     for (i = 0; i < tags.length; i++) {
-        var imgdata = getPictureName(tags[i].getAttribute('data-tag'));
+        var imgdata = getPictureData(tags[i].getAttribute('data-tag'));
+        // Only swap if we can find a picture. Otherwise, leave it as is.
+        // No point in showing a broken picture icon.
         if(imgdata != undefined) {
             tags[i].innerHTML = "<img src='data:image/gif;base64," + imgdata + "' alt='" + tags[i].getAttribute('title') + "'>";
         }
