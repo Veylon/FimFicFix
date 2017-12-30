@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FimFic Pictures
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.2.1
 // @description  Replace Character Tags with Pictures
 // @author       Veylon
 // @grant        none
@@ -9,11 +9,11 @@
 // @run-at document-idle
 // ==/UserScript==
 
-function getStoryTags()
+function getStoryTags(data_tag_string)
 {
     // Return all anchor tags that have a data-tag-id member
     // This should select all genre, series, content, and character tags
-    return document.querySelectorAll("a[data-tag-id]");
+    return document.querySelectorAll("a[" + data_tag_string + "]");
 }
 
 function getPictureData(tag_id)
@@ -339,22 +339,26 @@ function getPictureData(tag_id)
         }
 }
 
-function swapForPictures(tags)
+function swapForPictures(tags, data_tag_string)
 {
     for (let i = 0; i < tags.length; i++) {
         // Find the tag's id.
         // Since it will be in text, change it to a number
         // Use the getPictureData funciton to retrieve the Hex64 string containing the desired picture
-        const imgdata = getPictureData(Number(tags[i].getAttribute('data-tag-id')));
+        const imgdata = getPictureData(Number(tags[i].getAttribute(data_tag_string)));
         // Only swap if we can find a picture. Otherwise, leave it as is.
         // No point in showing a broken picture icon.
-        if(imgdata != undefined) {
+        if(imgdata !== undefined) {
             tags[i].innerHTML = "<img src='data:image/png;base64," + imgdata + "' alt='" + tags[i].getAttribute('title') + "'>";
         }
     }
 }
 
-swapForPictures(getStoryTags());
+let data_tag_string = "data-tag-id";
+if(!!document.getElementById("chapter")) {
+    data_tag_string = "tag-id";
+}
+swapForPictures(getStoryTags(data_tag_string), data_tag_string);
 
 // Description:
 // 1) Find all anchor tags that contain a "data-tag-id"
