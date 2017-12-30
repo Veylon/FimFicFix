@@ -354,10 +354,13 @@ function swapForPictures(tags, data_tag_string)
     }
 }
 
+// "data-tag-id" is used everywhere except when viewing chapters in stories
 let data_tag_string = "data-tag-id";
+// If this is a chapter page, switch to "tag-id"
 if(!!document.getElementById("chapter")) {
     data_tag_string = "tag-id";
 }
+// Tell the functions which tag type to use
 swapForPictures(getStoryTags(data_tag_string), data_tag_string);
 
 // Description:
