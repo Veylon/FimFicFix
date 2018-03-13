@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FimFic Pictures
 // @namespace    http://tampermonkey.net/
-// @version      1.2.1
+// @version      1.2.2
 // @description  Replace Character Tags with Pictures
 // @author       Veylon
 // @grant        none
@@ -336,6 +336,10 @@ function getPictureData(tag_id)
             // 397 Mistmane
             // 398 Sphinx
             // 399 The Pillars
+
+            // 400-410
+
+            case 414: return "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";
         }
 }
 
@@ -354,13 +358,10 @@ function swapForPictures(tags, data_tag_string)
     }
 }
 
-// "data-tag-id" is used everywhere except when viewing chapters in stories
 let data_tag_string = "data-tag-id";
-// If this is a chapter page, switch to "tag-id"
 if(!!document.getElementById("chapter")) {
     data_tag_string = "tag-id";
 }
-// Tell the functions which tag type to use
 swapForPictures(getStoryTags(data_tag_string), data_tag_string);
 
 // Description:
