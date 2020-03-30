@@ -153,8 +153,8 @@ function HidePopularStories(doit)
 
 (function() {
     'use strict';
-    // Use this to remove the "Popular Stories" section from front page
-    HidePopularStories();
+    // Set to true to remove the "Popular Stories" section from front page
+    HidePopularStories(false);
     // Use this to remove stories with certain tags
     removeStoriesWithTag("Porn");
     // Use this to remove stories with certain text in the description
